@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
 
-function main() {
-    console.log("Hello REXT-World");
+function getUsers() {
+    
     fetch('http://localhost:8080/monolith/rext/usermgmt/users')
         .then(res => res.json())
         .then(users => {
@@ -13,14 +13,12 @@ function main() {
             console.log(arr[0]);
         })
         .catch(err => console.error(err));
-    
-    let user = new User();
-    user.login = 'mab'
-    user.firstName = 'Berta'
-    user.lastName = ' Maier'
+}
 
-    console.log(JSON.stringify(user));
-
+async function ping() {
+    const res = await fetch('http://localhost:8080/monolith/rext/usermgmt/ping');
+    const data = await res.json();
+    console.log(data);
 }
 
 class User {
@@ -64,8 +62,6 @@ async function postUser(user) {
     
 }
 
-
-//main()
 function createUser() {
     let user = new User();
     user.login = 'mab6';
@@ -75,5 +71,10 @@ function createUser() {
 
 }
 
-createUser()
+function main() {
+    // createUser()
+    //getUsers()
+    ping();
+}
 
+main()
