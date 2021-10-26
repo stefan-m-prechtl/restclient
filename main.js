@@ -1,16 +1,25 @@
 import fetch from 'node-fetch';
 
+function createGetHeader4Json() {
+    const config = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    };
+    return config
+}
 
 function getUsers() {
-    
-    fetch('http://localhost:8080/monolith/rext/usermgmt/users')
+    fetch('http://localhost:8080/monolith/rext/usermgmt/users',createGetHeader4Json())
         .then(res => res.json())
         .then(users => {
             let arr = [];
             users.forEach(user => {
                 arr.push(new User(user))
+                console.log(user);
             });
-            console.log(arr[0]);
+    
         })
         .catch(err => console.error(err));
 }
@@ -71,10 +80,9 @@ function createUser() {
 
 }
 
-function main() {
-    // createUser()
-    //getUsers()
+async function main() {
     ping();
+    let users = getUsers();
 }
 
 main()
