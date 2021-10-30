@@ -81,7 +81,7 @@ async function main() {
     // createUser()
     let result = getUsers();
     let data = await result.then(data => {return data});
-    console.log(data);
+    data.forEach(user => console.log(user))
     let pingData = await ping();
     console.log(pingData);
 }
