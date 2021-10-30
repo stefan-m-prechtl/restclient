@@ -3,14 +3,12 @@ import fetch from 'node-fetch';
 
 function getUsers() {
     
-    fetch('http://localhost:8080/monolith/rext/usermgmt/users')
+    return fetch('http://localhost:8080/monolith/rext/usermgmt/users')
         .then(res => res.json())
         .then(users => {
             let arr = [];
-            users.forEach(user => {
-                arr.push(new User(user))
-            });
-            console.log(arr[0]);
+            users.forEach(user => arr.push(new User(user)));
+            return arr;
         })
         .catch(err => console.error(err));
 }
@@ -18,7 +16,7 @@ function getUsers() {
 async function ping() {
     const res = await fetch('http://localhost:8080/monolith/rext/usermgmt/ping');
     const data = await res.json();
-    console.log(data);
+    return data;
 }
 
 class User {
@@ -71,10 +69,13 @@ function createUser() {
 
 }
 
-function main() {
+async function main() {
     // createUser()
-    //getUsers()
-    ping();
+    let result = getUsers();
+    let data = await result.then(data => {return data});
+    console.log(data);
+    let pingData = await ping();
+    console.log(pingData);
 }
 
 main()
