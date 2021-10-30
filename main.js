@@ -1,8 +1,16 @@
 import fetch from 'node-fetch';
 
+function createGetHeader4Json() {
+    const config = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    };
+    return config
+}
 
 function getUsers() {
-    
     return fetch('http://localhost:8080/monolith/rext/usermgmt/users')
         .then(res => res.json())
         .then(users => {
