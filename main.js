@@ -1,5 +1,8 @@
 import fetch from 'node-fetch';
+import User from './usermgmt/user.js'
+import UserRestAccess from './usermgmt/userrest.js';
 
+/*
 function createGetHeader4Json() {
     const config = {
         method: 'GET',
@@ -21,33 +24,9 @@ function getUsers() {
         .catch(err => console.error(err));
 }
 
-async function ping() {
-    const res = await fetch('http://localhost:8080/monolith/rext/usermgmt/ping');
-    const data = await res.json();
-    return data;
-}
 
-class User {
-    constructor(options = {}) {
-        Object.assign(this, options);
-    }
-    get login() {
-        return this.userlogin;
-    }
-    get firstName() {
-        return this.firstName;
-    }
-    set firstName(name) {
-        this.firstname = name;
-    }
-    set lastName(name) {
-        this.lastname = name;
-    }
-    set login(name) {
-        this.userlogin = name;
-    }
 
-}
+
 
 
 async function postUser(user) {
@@ -79,11 +58,15 @@ function createUser() {
 
 async function main() {
     // createUser()
-    let result = getUsers();
-    let data = await result.then(data => {return data});
-    data.forEach(user => console.log(user))
-    let pingData = await ping();
+    //let result = getUsers();
+    //let data = await result.then(data => {return data});
+    //data.forEach(user => console.log(user))
+
+    let userAccess = new UserRestAccess();
+
+    let pingData = await userAccess.ping();
     console.log(pingData);
 }
+*/
 
-main()
+//main();
