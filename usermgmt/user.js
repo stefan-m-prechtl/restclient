@@ -2,6 +2,15 @@ export default class User {
     constructor(options = {}) {
         Object.assign(this, options);
     }
+
+    createUser(login, firstname, lastname) {
+        let user = new User();
+        user.login = login;
+        user.firstName = firstname;
+        user.lastName = lastname;
+        return user;
+    }
+
     get login() {
         return this.userlogin;
     }
